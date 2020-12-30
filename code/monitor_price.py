@@ -12,7 +12,7 @@ import datetime
 
 def is_weekday():
     """
-    判断日期是否为工作日（周一到周五）
+    判断日期是否为工作日（只在周二~周六进行监听，监听昨天的数据）
     """
     today = datetime.datetime.now().weekday()
     if int(today) in range(1,6):
@@ -76,7 +76,7 @@ def monitor_price():
     else:
         #date_time = "2020-12-20"
         # 获取需要监控的股票列表
-        with open("monitor_price.json", "r", encoding="utf-8") as f:
+        with open("./configs/monitor_price.json", "r", encoding="utf-8") as f:
             data = json.load(f)
         
         write_flag = False
@@ -108,7 +108,7 @@ def monitor_price():
                 pass
             
         if write_flag == True:    
-            with open("monitor_price.json", "w", encoding="utf-8") as f:
+            with open("./configs/monitor_price.json", "w", encoding="utf-8") as f:
                 json.dump(data, f)
             
     return "".join(messages)
