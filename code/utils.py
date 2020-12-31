@@ -47,5 +47,20 @@ def get_indicators(stockCode, key):
         if name == key:
             return value
 
+def get_dec_ratio(stockCode):
+    """
+    计算52周内，现在的股价相比最高价降低了多少
+    """
+    new_price = get_indicators(stockCode, "今开")
+    if new_price is None or new_price == "--":
+        return None
+    
+    high_price = get_indicators(stockCode, "52周最高")
+    if high_price is None or high_price == "--":
+        return None
+    
+    dec_ratio = 1- float(new_price) / float(high_price)
+    return dec_ratio
+
 if __name__ == "__main__":
     print(get_indicators("000651","总市值"))
