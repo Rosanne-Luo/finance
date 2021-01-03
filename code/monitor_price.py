@@ -72,7 +72,7 @@ def monitor_price():
     
     date_time = (datetime.datetime.now() + datetime.timedelta(days=-1)).date().strftime('%Y-%m-%d')
     if is_weekday() == False:
-        return ;
+        return "", 0;
     else:
         #date_time = "2020-12-20"
         # 获取需要监控的股票列表
@@ -80,7 +80,8 @@ def monitor_price():
             data = json.load(f)
         
         write_flag = False
-        messages = ["<h1>最新个股股价</h1>\n"]
+        num = 0
+        messages = []
         for i in range(len(data["records"])):
             record = data["records"][i]
             stockCode = record["stockCode"]
@@ -88,7 +89,7 @@ def monitor_price():
             minPrice = float(record["minPrice"])
             maxPrice = float(record["maxPrice"])
             new_Price = float(get_newPrice(stockCode, date_time))
-            print("{}: 最低价{}，最高价{}, 最新价{}".format(stockCode, minPrice, maxPrice, new_Price))
+            #print("{}: 最低价{}，最高价{}, 最新价{}".format(stockCode, minPrice, maxPrice, new_Price))
             
             if new_Price < 0:
                 continue
@@ -97,12 +98,14 @@ def monitor_price():
                     write_flag = True
                 data["records"][i]["maxPrice"] = new_Price
                 message = "<p>{} {} {} 股价创新高: {}</p>".format(date_time, stockCode, stockName, new_Price)
+                num += 1
                 messages.append(message)
             elif new_Price <= minPrice:
                 if write_flag == False:
                     write_flag == True
                 data["records"][i]["minPrice"] = minPrice
                 message = "<p>{} {} {} 股价创新低: {}</p>".format(date_time, stockCode, stockName, new_Price)
+                num += 1
                 messages.append(message)
             else:
                 pass
@@ -111,9 +114,9 @@ def monitor_price():
             with open("./configs/monitor_price.json", "w", encoding="utf-8") as f:
                 json.dump(data, f)
             
-    return "".join(messages)
+    return "".join(messages), num
 
 if __name__ == "__main__":
     print("run...")
-    monitor_price()
+    print(monitor_price())
 

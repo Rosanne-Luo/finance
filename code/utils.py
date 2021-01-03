@@ -6,6 +6,13 @@
 
 import requests
 from bs4 import BeautifulSoup
+import datetime
+
+def get_yesterday():
+    today = datetime.date.today()
+    oneday = datetime.timedelta(days = 1)
+    yesterday = today - oneday
+    return yesterday.strftime("%Y-%m-%d")
 
 def get_indicators(stockCode, key):
     """
