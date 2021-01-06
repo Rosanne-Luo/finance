@@ -75,10 +75,11 @@ def get_new_industry_research():
             publishDate = data["publishDate"][0:10]
             industryCode = data["industryCode"]
             industryName = data["industryName"]
-            report = "<p>{}-{}-{}-{}</p>".format(publishDate, industryName, title, orgSName)
+            infoCode = data["infoCode"]
+            report = "<p><a href='http://data.eastmoney.com/report/zw_industry.jshtml?infocode={}'>{}-{}-{}-{}</a></p>".format(infoCode, publishDate, industryName, title, orgSName)
             if industryCode in monitor_industry.keys() and title.find("周报")==-1 and publishDate==yesterday:
                 messages.append(report)
-                #print(report)
+                print(report)
                 num += 1
     return "".join(messages), num
 
