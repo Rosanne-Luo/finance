@@ -1,1 +1,7 @@
-{"count": 6, "records": [{"stockCode": "000002", "stockName": "\u4e07\u79d1A", "minPrice": "27", "maxPrice": "32"}, {"stockCode": "000651", "stockName": "\u683c\u529b\u7535\u5668", "minPrice": "57", "maxPrice": "70"}, {"stockCode": "000786", "stockName": "\u5317\u65b0\u5efa\u6750", "minPrice": "32", "maxPrice": "42"}, {"stockCode": "600585", "stockName": "\u6d77\u87ba\u6c34\u6ce5", "minPrice": 51.0, "maxPrice": "63"}, {"stockCode": "600323", "stockName": "\u701a\u84dd\u73af\u5883", "minPrice": "22", "maxPrice": "25"}, {"stockCode": "600176", "stockName": "\u4e2d\u56fd\u5de8\u77f3", "minPrice": "15", "maxPrice": 19.81}]}
+{"count": 7, "records": [{"stockCode": "000002", "stockName": "万科A", "minPrice": "27", "maxPrice": "32"},
+        {"stockCode": "000651", "stockName": "格力电器", "minPrice": "57", "maxPrice": "70"}, 
+        {"stockCode": "000786", "stockName": "北新建材", "minPrice": "32", "maxPrice": "42"}, 
+        {"stockCode": "600585", "stockName": "海螺水泥", "minPrice": 51.0, "maxPrice": "63"}, 
+        {"stockCode": "600323", "stockName": "瀚蓝环境", "minPrice": "22", "maxPrice": "25"}, 
+        {"stockCode": "600176", "stockName": "中国巨石", "minPrice": "15", "maxPrice": "22"},
+        {"stockCode":"002127", "stockName":"南极电商","minPrice":"9", "maxPrice":"10.5"}]}
