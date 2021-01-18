@@ -6,6 +6,7 @@
 
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 def get_indicators(stockCode, key):
     """
@@ -50,6 +51,7 @@ def get_indicators(stockCode, key):
         if name == key:
             return value
         
+
 def get_dec_ratio(stockCode):
     """
     计算52周内，现在的股价相比最高价降低了多少
@@ -67,7 +69,7 @@ def get_dec_ratio(stockCode):
 
 def monitor_dec_ratio():
     import pandas as pd
-    df = pd.read_excel("股票池.xlsx", sheet_name="监控名单")
+    df = pd.read_csv("configs/monitor_dec_ratio.csv", header=0)
     
     result = []
     i = 0
@@ -79,8 +81,9 @@ def monitor_dec_ratio():
             #print("{} {}:{:.2f}".format(stockCode, stockName, dec_ratio))
             if dec_ratio is not None and dec_ratio>0.2:
                 result.append("<p>{} {}: {:.2f}</p>".format(stockCode, stockName, dec_ratio))
-    return result
+    return "".join(result), len(result)
 
 if __name__ == "__main__":
     print(monitor_dec_ratio())
+   
 

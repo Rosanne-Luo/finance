@@ -15,6 +15,7 @@ import logging
 import utils
 import monitor_price
 import monitor_industry_research
+import monitor_dec_ratio
 
 def get_szse():
     """
@@ -220,7 +221,12 @@ result, num5 = monitor_industry_research.get_new_industry_research()
 messages += result
 logger.info("共有{}个行业研报".format(num5))
 
-if num1 or num2 or num3 or num4 or num5:
+messages += "<h1>跌幅过大的股票</h1>"
+result, num6 = monitor_dec_ratio.monitor_dec_ratio()
+messages += result 
+logger.info("共有{}个股票跌幅过大".format(num6))
+
+if num1 or num2 or num3 or num4 or num5 or num6:
     #print(messages)
     sendEmail(messages)
     logger.info("邮件发送成功!")
