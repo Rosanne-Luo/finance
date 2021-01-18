@@ -112,7 +112,7 @@ def monitor_price():
             
         if write_flag == True:    
             with open("./configs/monitor_price.json", "w", encoding="utf-8") as f:
-                json.dump(data, f)
+                json.dump(data, f, ensure_ascii=False)
             
     return "".join(messages), num
 
